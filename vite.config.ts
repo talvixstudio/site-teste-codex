@@ -1,10 +1,13 @@
-import tailwindcss from '@tailwindcss/postcss';
+import tailwindcss from '@tailwindcss/vite';
 import { nitro } from 'nitro/vite';
 import vinext from 'vinext';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  resolve: { dedupe: ['react', 'react-dom'] },
+  resolve: {
+    dedupe: ['react', 'react-dom'],
+  },
+
   optimizeDeps: {
     include: [
       'react',
@@ -14,6 +17,10 @@ export default defineConfig({
       '@base-ui/react/dialog',
     ],
   },
-  css: { postcss: { plugins: [tailwindcss()] } },
-  plugins: [vinext(), nitro()],
+
+  plugins: [
+    tailwindcss(),
+    vinext(),
+    nitro(),
+  ],
 });
